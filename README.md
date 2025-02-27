@@ -2,7 +2,7 @@
 
 🚀 A React utility package for creating interactive illustrations using SVGs.
 
-## Features
+## Interactions
 ✅ Mouse-tracking multi-eye interaction  
 ✅ Floating/moving SVG elements  
 ✅ Easy customization for developers  
