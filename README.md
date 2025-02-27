@@ -7,6 +7,8 @@
 ✅ Floating/moving SVG elements  
 ✅ Easy customization for developers  
 
+📄 See usage file for how to use the components: [`./USAGE.md`](USAGE.md)
+
 ## Installation
 ```sh
 npm install interactive-illustrations
