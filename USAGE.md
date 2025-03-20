@@ -29,3 +29,19 @@ A component that makes an SVG smoothly follow the mouse cursor.
 - opacity (type: number), Controls how visible the SVG is (0 = fully transparent, 1 = fully visible)
 - delay (type: number), Defines how smoothly the SVG follows the cursor (lower = faster).
 - ease (type: string), The easing function applied to the animation. See GSAP easing options.
+
+-------------
+
+## Rotate Object
+A component that rotates an SVG or element inside SVG smoothly based on either scroll or mouse cursor
+📄 See example for scroll: [`./examples/ExampleScrollRotateObject.tsx`](./examples/ExampleScrollRotateObject.tsx)
+📄 See example for mouse: [`./examples/ExampleMouseRotateObject.tsx`](./examples/ExampleMouseRotateObject.tsx)
+
+### Props:
+- src (type: React.ReactNode), **Required**
+- size (type: number), Scaling factor for the SVG size.
+- speed (type: number), Controls rotation speed (lower is slower) [only for scroll]
+- offset (type: number), Manually set rotation offset for mouse follow [useful for shapes like arrows]
+- clockwise (type: boolean), Sets rotation direction [only for scroll]
+- respondsTo (type: string), Sets "scroll" or "mouse" interaction
+- targetClassName (type: string), Specific element inside SVG to rotate identified by its class name

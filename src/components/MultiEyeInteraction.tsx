@@ -18,8 +18,7 @@ const mapValue = (
   stop1: number,
   start2: number,
   stop2: number
-) =>
-  ((value - start1) * (stop2 - start2)) / (stop1 - start1) + start2;
+) => ((value - start1) * (stop2 - start2)) / (stop1 - start1) + start2;
 
 const distance = (x1: number, y1: number, x2: number, y2: number) =>
   Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
@@ -32,9 +31,8 @@ const MultiEyeInteraction: React.FC<MultiEyeInteractionProps> = ({
   responsiveness = 1.0,
 }) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
-  const [viewBox, setViewBox] = useState("0 0 100 100"); // Default viewBox
+  const [viewBox, setViewBox] = useState("0 0 100 100");
 
-  // Update viewBox based on SVG content (if needed)
   useEffect(() => {
     const svg = svgRef.current;
     if (!svg) return;
@@ -57,30 +55,28 @@ const MultiEyeInteraction: React.FC<MultiEyeInteractionProps> = ({
       const rect = svg.getBoundingClientRect();
       const vb = svg.viewBox.baseVal;
 
-      // Convert mouse coordinates to SVG space
-      const mouseX =
-        vb.x + ((event.clientX - rect.left) / rect.width) * vb.width;
-      const mouseY =
-        vb.y + ((event.clientY - rect.top) / rect.height) * vb.height;
+      const mouseX = vb.x + ((event.clientX - rect.left) / rect.width) * vb.width;
+      const mouseY = vb.y + ((event.clientY - rect.top) / rect.height) * vb.height;
 
-      // Select all eye groups by class
-      const eyes = svg.querySelectorAll(".eye");
-      eyes.forEach((eye) => {
-        const bounding = eye.querySelector(".bounding") as SVGCircleElement;
-        const moving = eye.querySelector(".moving") as SVGCircleElement;
+      svg.querySelectorAll(".eye").forEach((eye) => {
+        const bounding = eye.querySelector(".bounding") as SVGGraphicsElement;
+        const moving = eye.querySelector(".moving") as SVGGraphicsElement;
+
         if (!bounding || !moving) return;
 
-        // Get the eye's center and radii
-        const centerX = parseFloat(bounding.getAttribute("cx") || "0");
-        const centerY = parseFloat(bounding.getAttribute("cy") || "0");
-        const boundingRadius = parseFloat(bounding.getAttribute("r") || "0");
-        const movingRadius = parseFloat(moving.getAttribute("r") || "0");
+        const boundingBox = bounding.getBBox();
+        const movingBox = moving.getBBox();
+
+        const centerX = boundingBox.x + boundingBox.width / 2;
+        const centerY = boundingBox.y + boundingBox.height / 2;
+
+        const maxBoundingRadius = Math.max(boundingBox.width, boundingBox.height) / 2;
+        const maxMovingRadius = Math.max(movingBox.width, movingBox.height) / 2;
 
         const dx = mouseX - centerX;
         const dy = mouseY - centerY;
         const angle = Math.atan2(dy, dx);
 
-        // Create a translation range based on the responsiveness and window size
         const minXTranslation = centerX - responsiveness * window.innerWidth;
         const maxXTranslation = centerX + responsiveness * window.innerWidth;
         const minYTranslation = centerY - responsiveness * window.innerHeight;
@@ -89,20 +85,21 @@ const MultiEyeInteraction: React.FC<MultiEyeInteractionProps> = ({
         const cx = constrain(mouseX, minXTranslation, maxXTranslation);
         const cy = constrain(mouseY, minYTranslation, maxYTranslation);
 
-        // Creates an offset illusion for the pupil movement
         const x = mapValue(cx, minXTranslation, maxXTranslation, centerX - 100, centerX + 100);
         const y = mapValue(cy, minYTranslation, maxYTranslation, centerY - 100, centerY + 100);
 
-        const maxOffset = boundingRadius - movingRadius;
+        const maxOffset = maxBoundingRadius - maxMovingRadius;
         const d = constrain(distance(x, y, centerX, centerY), 0, maxOffset);
 
-        // Compute the new pupil center based on the angle and constrained distance
         const newCx = centerX + d * Math.cos(angle);
         const newCy = centerY + d * Math.sin(angle);
 
-        // Animate the pupil movement using GSAP
+        const moveX = newCx - (movingBox.x + movingBox.width / 2);
+        const moveY = newCy - (movingBox.y + movingBox.height / 2);
+
         gsap.to(moving, {
-          attr: { cx: newCx, cy: newCy },
+          x: moveX,
+          y: moveY,
           duration: speed,
           ease: "power1.out",
         });

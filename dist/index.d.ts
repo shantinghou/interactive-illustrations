@@ -18,4 +18,15 @@ interface SVGFollowMouseProps {
 }
 declare const SVGFollowMouse: React.FC<SVGFollowMouseProps>;
 
-export { MultiEyeInteraction, SVGFollowMouse as SvgFollowMouse };
+interface RotateObjectProps {
+    src: React.ReactNode;
+    size?: number;
+    speed?: number;
+    offset?: number;
+    clockwise?: boolean;
+    respondsTo?: string;
+    targetClassName?: string;
+}
+declare const RotateObject: React.FC<RotateObjectProps>;
+
+export { MultiEyeInteraction, RotateObject, SVGFollowMouse as SvgFollowMouse };

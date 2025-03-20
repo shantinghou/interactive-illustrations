@@ -733,8 +733,7 @@ const mapValue = (value, start1, stop1, start2, stop2) => ((value - start1) * (s
 const distance = (x1, y1, x2, y2) => Math.sqrt(Math.pow((x2 - x1), 2) + Math.pow((y2 - y1), 2));
 const MultiEyeInteraction = ({ src, speed = 0.2, width = "100%", height = "100%", responsiveness = 1.0, }) => {
     const svgRef = React.useRef(null);
-    const [viewBox, setViewBox] = React.useState("0 0 100 100"); // Default viewBox
-    // Update viewBox based on SVG content (if needed)
+    const [viewBox, setViewBox] = React.useState("0 0 100 100");
     React.useEffect(() => {
         const svg = svgRef.current;
         if (!svg)
@@ -754,42 +753,39 @@ const MultiEyeInteraction = ({ src, speed = 0.2, width = "100%", height = "100%"
         const handleMouseMove = (event) => {
             const rect = svg.getBoundingClientRect();
             const vb = svg.viewBox.baseVal;
-            // Convert mouse coordinates to SVG space
             const mouseX = vb.x + ((event.clientX - rect.left) / rect.width) * vb.width;
             const mouseY = vb.y + ((event.clientY - rect.top) / rect.height) * vb.height;
-            // Select all eye groups by class
-            const eyes = svg.querySelectorAll(".eye");
-            eyes.forEach((eye) => {
+            svg.querySelectorAll(".eye").forEach((eye) => {
                 const bounding = eye.querySelector(".bounding");
                 const moving = eye.querySelector(".moving");
                 if (!bounding || !moving)
                     return;
-                // Get the eye's center and radii
-                const centerX = parseFloat(bounding.getAttribute("cx") || "0");
-                const centerY = parseFloat(bounding.getAttribute("cy") || "0");
-                const boundingRadius = parseFloat(bounding.getAttribute("r") || "0");
-                const movingRadius = parseFloat(moving.getAttribute("r") || "0");
+                const boundingBox = bounding.getBBox();
+                const movingBox = moving.getBBox();
+                const centerX = boundingBox.x + boundingBox.width / 2;
+                const centerY = boundingBox.y + boundingBox.height / 2;
+                const maxBoundingRadius = Math.max(boundingBox.width, boundingBox.height) / 2;
+                const maxMovingRadius = Math.max(movingBox.width, movingBox.height) / 2;
                 const dx = mouseX - centerX;
                 const dy = mouseY - centerY;
                 const angle = Math.atan2(dy, dx);
-                // Create a translation range based on the responsiveness and window size
                 const minXTranslation = centerX - responsiveness * window.innerWidth;
                 const maxXTranslation = centerX + responsiveness * window.innerWidth;
                 const minYTranslation = centerY - responsiveness * window.innerHeight;
                 const maxYTranslation = centerY + responsiveness * window.innerHeight;
                 const cx = constrain(mouseX, minXTranslation, maxXTranslation);
                 const cy = constrain(mouseY, minYTranslation, maxYTranslation);
-                // Creates an offset illusion for the pupil movement
                 const x = mapValue(cx, minXTranslation, maxXTranslation, centerX - 100, centerX + 100);
                 const y = mapValue(cy, minYTranslation, maxYTranslation, centerY - 100, centerY + 100);
-                const maxOffset = boundingRadius - movingRadius;
+                const maxOffset = maxBoundingRadius - maxMovingRadius;
                 const d = constrain(distance(x, y, centerX, centerY), 0, maxOffset);
-                // Compute the new pupil center based on the angle and constrained distance
                 const newCx = centerX + d * Math.cos(angle);
                 const newCy = centerY + d * Math.sin(angle);
-                // Animate the pupil movement using GSAP
+                const moveX = newCx - (movingBox.x + movingBox.width / 2);
+                const moveY = newCy - (movingBox.y + movingBox.height / 2);
                 gsap.gsap.to(moving, {
-                    attr: { cx: newCx, cy: newCy },
+                    x: moveX,
+                    y: moveY,
                     duration: speed,
                     ease: "power1.out",
                 });
@@ -852,6 +848,98 @@ const SVGFollowMouse = ({ src, size = 1, opacity = 0.8, delay = 0.1, ease = "pow
         }, children: jsxRuntimeExports.jsx("svg", { ref: svgRef, width: containerWidth, height: containerHeight, viewBox: viewBox, preserveAspectRatio: "xMidYMid meet", children: React.isValidElement(src) ? src : null }) }));
 };
 
+const RotateObject = ({ src, size = 1, speed = 0.2, offset = 0, clockwise = true, respondsTo = "scroll", targetClassName = null }) => {
+    const svgRef = React.useRef(null);
+    const [viewBox, setViewBox] = React.useState("0 0 100 100"); // Default viewBox
+    let baseWidth = 100;
+    let baseHeight = 100;
+    const rotationRef = React.useRef(0);
+    // Update viewBox based on SVG content (if needed)
+    React.useEffect(() => {
+        const svg = svgRef.current;
+        if (!svg)
+            return;
+        const updateViewBox = () => {
+            const bbox = svg.getBBox();
+            if (bbox.width > 0 && bbox.height > 0) {
+                setViewBox(`${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`);
+            }
+        };
+        updateViewBox();
+    }, [src]);
+    const containerWidth = baseWidth * size;
+    const containerHeight = baseHeight * size;
+    React.useEffect(() => {
+        const svg = svgRef.current;
+        if (!svg)
+            return;
+        const targetElement = targetClassName
+            ? svg.querySelector(`.${targetClassName}`)
+            : svg;
+        if (!targetElement)
+            return;
+        // --- Scroll response ---
+        if (respondsTo === "scroll") {
+            let lastScrollY = window.scrollY;
+            // Set initial rotation and transform origin
+            gsap.gsap.set(targetElement, { rotation: 0, transformOrigin: "50% 50%" });
+            const handleScroll = () => {
+                const currentScrollY = window.scrollY;
+                const delta = currentScrollY - lastScrollY;
+                lastScrollY = currentScrollY;
+                // Calculate the rotation change based on scroll delta and speed.
+                let rotationDelta = delta * (speed + 1.0);
+                // Reverse rotation if clockwise is false.
+                if (!clockwise) {
+                    rotationDelta = -rotationDelta;
+                }
+                // Animate rotation by adding the delta.
+                gsap.gsap.to(targetElement, {
+                    rotation: `+=${rotationDelta}`,
+                    ease: "power1.out",
+                    transformOrigin: "50% 50%",
+                    duration: speed
+                });
+            };
+            window.addEventListener("scroll", handleScroll);
+            return () => window.removeEventListener("scroll", handleScroll);
+        }
+        // --- Mouse response ---
+        if (respondsTo == "mouse") {
+            const handleMouseMove = (event) => {
+                // Get element's bounding rectangle in screen coordinates.
+                const rect = targetElement.getBoundingClientRect();
+                const centerX = rect.left + rect.width / 2;
+                const centerY = rect.top + rect.height / 2;
+                // Compute the angle from the center to the mouse.
+                const angleRad = Math.atan2(event.clientY - centerY, event.clientX - centerX);
+                // Convert radians to degrees and normalize to [0,360)
+                let computedAngle = angleRad * (180 / Math.PI);
+                if (computedAngle < 0)
+                    computedAngle += 360;
+                // Retrieve the current continuous rotation.
+                const currentRotation = rotationRef.current;
+                // Adjust computedAngle by adding multiples of 360 to minimize the jump from currentRotation.
+                const continuousTarget = computedAngle + Math.round((currentRotation - computedAngle) / 360) * 360;
+                // Animate to the new continuous rotation target.
+                gsap.gsap.to(targetElement, {
+                    rotation: continuousTarget + offset,
+                    ease: "power1.out",
+                    duration: 0.2,
+                    transformOrigin: "50% 50%",
+                    onComplete: () => {
+                        rotationRef.current = continuousTarget;
+                    }
+                });
+            };
+            window.addEventListener("mousemove", handleMouseMove);
+            return () => window.removeEventListener("mousemove", handleMouseMove);
+        }
+    }, [respondsTo, speed, clockwise]);
+    return (jsxRuntimeExports.jsx("svg", { ref: svgRef, width: containerWidth, height: containerHeight, viewBox: viewBox, preserveAspectRatio: "xMidYMid meet", children: React.isValidElement(src) ? src : null }));
+};
+
 exports.MultiEyeInteraction = MultiEyeInteraction;
+exports.RotateObject = RotateObject;
 exports.SvgFollowMouse = SVGFollowMouse;
 //# sourceMappingURL=index.js.map
