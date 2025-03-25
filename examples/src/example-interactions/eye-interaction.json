@@ -1,0 +1,24 @@
+{
+    "tab": "Mouse-Follow",
+    "feature": "Eye-Follow",
+    "featureDescription": "The Eye-Follow component allows multiple “eyes” within an SVG to follow the user's cursor. Customize the behavior by adjusting animation speed and responsiveness.",
+    "params": [
+      { "prop": "src", "description": "(type: React.ReactNode), Required" },
+      { "prop": "speed", "description": "(type: number), controls animation speed (lower is slower)" },
+      { "prop": "width", "description": "(type: string), Width of the SVG container." },
+      { "prop": "height", "description": "(type: string), Height of the SVG container." },
+      { "prop": "responsiveness", "description": "(type: number), Determines how close the mouse has to be for the eyes follow the cursor." }
+    ],
+    "svg-requirement": {
+        "explanation": "For MultiEyeInteraction to work, you must label your SVG elements with specific class names:",
+        "classes": [
+            {"name": "eye", "description": "Wraps each eye."},
+            {"name": "bounding", "description": "The outer boundary of the eye (Restricting where the eye moves)."},
+            {"name": "moving", "description": "The moving part of the eye."}
+        ],
+        "example": "<svg width=\"208\" height=\"187\" viewBox=\"0 0 208 187\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n  <rect width=\"208\" height=\"187\" rx=\"25\" fill=\"#7BB7DD\"/>\n  <g className=\"eye\">\n    <circle className=\"bounding\" cx=\"57.5\" cy=\"127.5\" r=\"33.5\" fill=\"white\"/>\n    <circle className=\"moving\" cx=\"57.5\" cy=\"132.5\" r=\"15.5\" fill=\"black\"/>\n  </g>\n  <g className=\"eye\">\n    <circle className=\"bounding\" cx=\"149.5\" cy=\"127.5\" r=\"33.5\" fill=\"white\"/>\n    <circle className=\"moving\" cx=\"149.5\" cy=\"132.5\" r=\"15.5\" fill=\"black\"/>\n  </g>\n</svg>"
+    },
+    "examples": [
+        {"title": "Basic Example", "file": "ExampleEyeInteraction", "code": "<MultiEyeInteraction \n  src={<Example/>} \n  width=\"200px\" \n  height=\"auto\" \n  responsiveness={0.3} \n/>"}
+    ]
+  }

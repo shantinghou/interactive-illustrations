@@ -1,0 +1,15 @@
+{
+    "tab": "Mouse-Follow",
+    "feature": "Cursor",
+    "featureDescription": "A component that makes an SVG smoothly follow the mouse cursor.",
+    "params": [
+      { "prop": "src", "description": "(type: React.ReactNode), Required" },
+      { "prop": "size", "description": "(type: number), Scaling factor for the SVG size" },
+      { "prop": "opacity", "description": "(type: number), Controls how visible the SVG is (0 = fully transparent, 1 = fully visible)" },
+      { "prop": "delay", "description": "(type: number), Defines how smoothly the SVG follows the cursor (lower = faster)" },
+      { "prop": "ease", "description": "(type: string), The easing function applied to the animation. See GSAP easing options" }
+    ],
+    "examples": [
+        {"title": "(Observe your cursor)", "file": "ExampleMouseFollow", "code": "<SvgFollowMouse \nsrc={<Example/>}\n delay={0.9}\n size={1.7}\n opacity={0.7}/>"}
+    ]
+  }

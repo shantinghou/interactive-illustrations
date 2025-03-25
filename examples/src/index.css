@@ -18,14 +18,21 @@
   url('./assets/fonts/Syne/Syne-VariableFont_wght.ttf') 
 }
 
+@font-face{
+  font-family: "SilkaMono";
+  src:local("SilkaMono"),
+  url('./assets/fonts/SilkaMono/SilkaMono-Regular.otf') 
+}
+
 @theme {
   --font-display: "TransformaMix", sans-serif; 
   --font-subtitle: "TransformaSans", sans-serif;
   --font-body: "Syne", sans-serif;
+  --font-code: "SilkaMono", sans-serif;
 }
 
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif, "TransformaMix", "Syne";
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif, "TransformaMix", "Syne", "SilkaMono";
   line-height: 1.5;
   font-weight: 400;
 

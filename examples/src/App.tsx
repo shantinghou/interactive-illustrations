@@ -1,14 +1,35 @@
 import './App.css'
 import "./index.css";
+import { useState, useEffect } from 'react';
+
 import Sidebar from "./Sidebar";
+import Header from './Header';
+
 import { FakeCursor } from './assets/example-svg';
 import { SvgFollowMouse } from "interactive-illustrations";
-import { useState } from 'react';
-import Header from './Header';
-import { ExampleEyeInteraction, ExampleMouseFollow, ExampleMouseRotateObject, ExampleScrollRotateObject } from './example-interactions';
+
+import { eyeFollowFile, mouseRotateFile, scrollRotateFile, followCursorFile } from "./example-interactions";
+import { FeaturePage } from "./components/FeaturePage.tsx";
 
 function App() {
-  const [selectedTab, setSelectedTab] = useState<string>('Header');
+  const [selectedTab, setSelectedTab] = useState("Header");
+
+  // Update URL when tab changes
+  const handleTabSelect = (tab: string) => {
+    setSelectedTab(tab);
+    const params = new URLSearchParams(window.location.search);
+    params.set('tab', tab);
+    window.history.replaceState({}, '', `${window.location.pathname}?${params}`);
+  };
+
+  // Read tab from URL on load
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const tabFromURL = params.get('tab');
+    if (tabFromURL) {
+      setSelectedTab(tabFromURL);
+    }
+  }, []);
 
   const renderContent = () => {
     switch (selectedTab) {
@@ -21,14 +42,14 @@ function App() {
       case 'Glow': return <div/>;
 
       // Scroll
-      case 'Rotate-mouse': return <ExampleMouseRotateObject/>;
+      case 'Rotate-scroll': return <FeaturePage featureFile={scrollRotateFile}/>;
       case 'Morph': return <div/>;
 
       // Mouse
-      case 'Cursor': return <ExampleMouseFollow/>;
-      case 'Eye-follow': return <ExampleEyeInteraction/>;
-      case 'Rotate-scroll': return <ExampleScrollRotateObject/>;
-      case 'Avoidant': return <div/>;
+      case 'Cursor': return <FeaturePage featureFile={followCursorFile}/>;
+      case 'Eye-follow': return <FeaturePage featureFile={eyeFollowFile}/>;
+      case 'Rotate-mouse': return <FeaturePage featureFile={mouseRotateFile}/>;
+      // case 'Avoidant': return <div/>;
 
       // add other cases...
       default: return <Header/>;
@@ -40,10 +61,10 @@ function App() {
       className="flex min-h-screen"
     >
       {/* Sidebar */}
-      <Sidebar onTabSelect={setSelectedTab}/>
+      <Sidebar onTabSelect={handleTabSelect} curTab={selectedTab}/>
 
       {/* Main Content */}
-      <div className="ml-72 w-full h-screen">
+      <div className="ml-72 w-full">
         {renderContent()}
       </div>
       <SvgFollowMouse
