@@ -16,19 +16,19 @@ const BIRD = () => (
 
 export default function ExampleMouseFollow() {
     const [on, setOn] = useState(false)
-  return (
-    <div className="flex flex-col items-center">
-        {on ? (
-            <SvgFollowMouse src={<BIRD />} delay={0.9} size={1.7} opacity={0.7} />
-        ) : (
-            <BIRD className="w-50 h-auto"/>
-        )}
-        <p
-            className="bg-gray-300 rounded-md p-2 mt-5 w-fit cursor-pointer hover:bg-gray-400"
-            onClick={() => setOn(!on)}
-        >
-            {on ? "De-activate" : "Activate"}
-        </p>
-    </div>
-  )
+    return (
+        <div className="flex flex-col items-center">
+            {on ? (
+                <SvgFollowMouse src={<BIRD />} delay={0.9} size={1.7} opacity={0.7} />
+            ) : (
+                <BIRD className="w-50 h-auto"/>
+            )}
+            <p
+                className="bg-gray-300 rounded-md p-2 mt-5 w-fit cursor-pointer hover:bg-gray-400"
+                onClick={() => setOn(!on)}
+            >
+                {on ? "De-activate" : "Activate"}
+            </p>
+        </div>
+    )
 }

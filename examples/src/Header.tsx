@@ -3,7 +3,7 @@ import { Blue, Red, Yellow } from './assets/example-svg';
 import { MultiEyeInteraction } from "interactive-illustrations";
 import bgScribble from './assets/design/background-scribbles.png';
 
-export default function Header() {
+export default function Header({onTabSelect}) {
     return (
         <div 
             className="bg-cover bg-right-top p-10 text-center justify-items-center items-center h-screen"
@@ -38,7 +38,17 @@ export default function Header() {
             </div>
             <div className="relative p-5">
                 <img src={Viewbox} alt="Your SVG" className="w-full h-auto"/>
-                <h3 className="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/8 text-2xl font-subtitle underline underline-offset-4 w-full p-20">SVggles is a React utility package for creating interactive illustrations using SVGs.</h3>
+                <h3 className="absolute top-12 left-1/2 transform -translate-x-1/2 text-2xl font-subtitle underline underline-offset-4 w-full">SVggles is a React utility package for creating interactive illustrations using SVGs.</h3>
+            </div>
+            <div className="p-5">
+                <p 
+                    className="cursor-pointer rounded-md bg-[#213547] text-white font-body font-bold p-3 hover:bg-[#2c4a5e] transition-colors" 
+                    onClick={(e) => {
+                        onTabSelect && onTabSelect('Documentation');
+                    }}
+                >
+                    Get Started
+                </p>
             </div>
         </div>
     )

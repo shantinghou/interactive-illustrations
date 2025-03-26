@@ -37,7 +37,7 @@ export const SVGFormatBlock = ({ format }) => {
           <span className="ml-2">{expanded ? <FiChevronUp size={20} /> : <FiChevronDown size={20} />}</span>
         </p>
       </div>}
-
+      
       {expanded && <CodeBlock code={example} />}
     </div>
   );

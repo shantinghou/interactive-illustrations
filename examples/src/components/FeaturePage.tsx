@@ -23,12 +23,14 @@ export const FeaturePage = ({ featureFile }) => {
         {examples && examples.map((example, i) => (
           <div className="">
             <p className="text-lg font-bold pb-5">{example.title}</p>
-            <div className="flex gap-20 items-center">
-            <div>
-                <ComponentLoader file={example.file} />
-                <p className="text-xs pt-2 text-center text-gray-500">Example illustration</p>
-            </div>
-            <CodeBlock code={example.code} />
+            <div className="flex gap-15 items-center">
+              <div>
+                  <ComponentLoader file={example.file} />
+                  <p className="text-xs pt-2 text-center text-gray-500">Example illustration</p>
+              </div>
+              <div className={"min-w-2xl max-w-3xl"}>
+                <CodeBlock code={example.code} />
+              </div>
             </div>
           </div>
         ))}

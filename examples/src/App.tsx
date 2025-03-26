@@ -8,7 +8,15 @@ import Header from './Header';
 import { FakeCursor } from './assets/example-svg';
 import { SvgFollowMouse } from "interactive-illustrations";
 
-import { eyeFollowFile, mouseRotateFile, scrollRotateFile, followCursorFile, scrollOnMorphFile, glowOnHoverFile, hoverAnimateFile } from "./example-interactions";
+import { eyeFollowFile, 
+        mouseRotateFile, 
+        scrollRotateFile, 
+        followCursorFile, 
+        scrollOnMorphFile, 
+        glowOnHoverFile, 
+        hoverAnimateFile } from "./example-interactions";
+
+import { CreatorHighlights, SVGToReactGuide, GettingStarted } from "./pages";
 import { FeaturePage } from "./components/FeaturePage.tsx";
 
 function App() {
@@ -33,26 +41,28 @@ function App() {
 
   const renderContent = () => {
     switch (selectedTab) {
-      // Hover
-      case 'CreatorsHighlights': return <div/>;
-      case 'SvgToReact': return <div/>;
+      // Main
+      case 'CreatorsHighlights': return <CreatorHighlights/>;
+      case 'Documentation/GettingStarted/Installation': return <GettingStarted onTabSelect={handleTabSelect}/>;
+      case 'Documentation/GettingStarted/SvgToReact': return <SVGToReactGuide/>;
+      case 'Documentation': return <GettingStarted onTabSelect={handleTabSelect}/>;
 
       // Hover
-      case 'Animate': return <FeaturePage featureFile={hoverAnimateFile}/>;
-      case 'Glow': return <FeaturePage featureFile={glowOnHoverFile}/>;
+      case 'Documentation/Hover/Animate': return <FeaturePage featureFile={hoverAnimateFile}/>;
+      case 'Documentation/Hover/Glow': return <FeaturePage featureFile={glowOnHoverFile}/>;
 
       // Scroll
-      case 'Rotate-scroll': return <FeaturePage featureFile={scrollRotateFile}/>;
-      case 'Morph': return <FeaturePage featureFile={scrollOnMorphFile}/>;
+      case 'Documentation/Scroll/Rotate': return <FeaturePage featureFile={scrollRotateFile}/>;
+      case 'Documentation/Scroll/Morph': return <FeaturePage featureFile={scrollOnMorphFile}/>;
 
       // Mouse
-      case 'Cursor': return <FeaturePage featureFile={followCursorFile}/>;
-      case 'Eye-follow': return <FeaturePage featureFile={eyeFollowFile}/>;
-      case 'Rotate-mouse': return <FeaturePage featureFile={mouseRotateFile}/>;
+      case 'Documentation/MouseFollow/Cursor': return <FeaturePage featureFile={followCursorFile}/>;
+      case 'Documentation/MouseFollow/EyeFollow': return <FeaturePage featureFile={eyeFollowFile}/>;
+      case 'Documentation/MouseFollow/Rotate': return <FeaturePage featureFile={mouseRotateFile}/>;
       // case 'Avoidant': return <div/>;
 
       // add other cases...
-      default: return <Header/>;
+      default: return <Header onTabSelect={handleTabSelect}/>;
     }
   };
 

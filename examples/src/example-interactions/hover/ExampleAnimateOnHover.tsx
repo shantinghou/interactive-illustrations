@@ -1,4 +1,5 @@
 import { AnimatedOnHover } from "interactive-illustrations";
+import { useState } from "react";
 
 const Example = () => (
     <svg width="230" height="329" viewBox="0 0 230 329" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -10,7 +11,23 @@ const Example = () => (
 );
 
 export default function ExampleAnimateOnHover() {
+
+  const animationTypes = ["pulse", "spin", "wiggle", "tilt", "jelly", "pop"];
+  const [type, setType] = useState(0);
+
+  const nextState = () => {
+    setType((type + 1) % animationTypes.length);
+  }
+
   return (
-    <AnimatedOnHover src={<Example/>} width={150} height={200} animation={"jelly"}/>
-  );
+    <div className="flex flex-col items-center">
+        <AnimatedOnHover src={<Example/>} width={150} height={200} animation={animationTypes[type]}/>
+        <p
+            className="bg-gray-300 rounded-md p-2 mt-5 w-fit cursor-pointer hover:bg-gray-400"
+            onClick={nextState}
+        >
+            {`${animationTypes[type]} >`}
+        </p>
+    </div>
+  )
 }
