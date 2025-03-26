@@ -8,7 +8,7 @@ import Header from './Header';
 import { FakeCursor } from './assets/example-svg';
 import { SvgFollowMouse } from "interactive-illustrations";
 
-import { eyeFollowFile, mouseRotateFile, scrollRotateFile, followCursorFile } from "./example-interactions";
+import { eyeFollowFile, mouseRotateFile, scrollRotateFile, followCursorFile, scrollOnMorphFile, glowOnHoverFile, hoverAnimateFile } from "./example-interactions";
 import { FeaturePage } from "./components/FeaturePage.tsx";
 
 function App() {
@@ -38,12 +38,12 @@ function App() {
       case 'SvgToReact': return <div/>;
 
       // Hover
-      case 'Color': return <div/>;
-      case 'Glow': return <div/>;
+      case 'Animate': return <FeaturePage featureFile={hoverAnimateFile}/>;
+      case 'Glow': return <FeaturePage featureFile={glowOnHoverFile}/>;
 
       // Scroll
       case 'Rotate-scroll': return <FeaturePage featureFile={scrollRotateFile}/>;
-      case 'Morph': return <div/>;
+      case 'Morph': return <FeaturePage featureFile={scrollOnMorphFile}/>;
 
       // Mouse
       case 'Cursor': return <FeaturePage featureFile={followCursorFile}/>;
@@ -67,12 +67,12 @@ function App() {
       <div className="ml-72 w-full">
         {renderContent()}
       </div>
-      <SvgFollowMouse
+      {/* <SvgFollowMouse
         src={<FakeCursor/>}
         delay={0.4} 
         size={0.3}
         opacity={1.0}
-      />
+      /> */}
     </div>
       
     

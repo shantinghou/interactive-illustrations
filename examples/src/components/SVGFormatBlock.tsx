@@ -28,7 +28,7 @@ export const SVGFormatBlock = ({ format }) => {
         </tbody>
       </table>
 
-      <div
+      {example && <div
         className="cursor-pointer bg-[#DFE5D6] p-3 rounded-md w-full mt-5"
         onClick={handleExpanded}
       >
@@ -36,7 +36,7 @@ export const SVGFormatBlock = ({ format }) => {
           Example SVG component
           <span className="ml-2">{expanded ? <FiChevronUp size={20} /> : <FiChevronDown size={20} />}</span>
         </p>
-      </div>
+      </div>}
 
       {expanded && <CodeBlock code={example} />}
     </div>

@@ -8,7 +8,6 @@ interface RotateObjectProps {
   offset?: number;
   clockwise?: boolean;
   respondsTo?: string; // "mouse" or "scroll"
-  targetClassName?: string;
 }
 
 const RotateObject: React.FC<RotateObjectProps> = ({
@@ -17,8 +16,7 @@ const RotateObject: React.FC<RotateObjectProps> = ({
   speed = 0.2,
   offset = 0,
   clockwise = true,
-  respondsTo = "scroll",
-  targetClassName = null
+  respondsTo = "scroll"
 }) => {
     const svgRef = useRef<SVGSVGElement | null>(null);
     const [viewBox, setViewBox] = React.useState("0 0 100 100"); // Default viewBox
@@ -50,10 +48,11 @@ const RotateObject: React.FC<RotateObjectProps> = ({
         const svg = svgRef.current;
         if (!svg) return;
 
-        const targetElement = targetClassName
-            ? svg.querySelector(`.${targetClassName}`)
-            : svg;
-            if (!targetElement) return;
+        let targetElement = svg.querySelector(".target");
+
+        if (!targetElement) {
+          targetElement = svg;
+        }
 
         // --- Scroll response ---
         if (respondsTo === "scroll") {

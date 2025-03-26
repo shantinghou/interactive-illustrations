@@ -6,7 +6,6 @@ interface RotateObjectProps {
     offset?: number;
     clockwise?: boolean;
     respondsTo?: string;
-    targetClassName?: string;
 }
 declare const RotateObject: React.FC<RotateObjectProps>;
 export default RotateObject;

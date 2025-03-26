@@ -1,0 +1,24 @@
+{
+    "tab": "Scroll",
+    "feature": "Morph",
+    "featureDescription": "A component that morphs shapes smoothly based on scroll.",
+    "params": [
+        { "prop": "startPath", "description": "(type: string), Required — initial SVG path the morph starts from" },
+        { "prop": "endPath", "description": "(type: string), Required — target SVG path to morph into" },
+        { "prop": "width", "description": "(type: number), Width of the SVG element (default: 300)" },
+        { "prop": "height", "description": "(type: number), Height of the SVG element (default: 300)" },
+        { "prop": "viewBox", "description": "(type: string), SVG viewBox attribute (default: '0 0 300 300')" },
+        { "prop": "color", "description": "(type: string), Fill color for the morphing path (default: '#D9D9D9')" },
+        { "prop": "scrollSpeed", "description": "(type: number), Controls how much scrolling is needed to complete the morph (higher = slower morph, default: 1)" }
+    ],
+    "svg-requirement": {
+        "explanation": "Both `startPath` and `endPath` must be valid SVG path (`<path d=\"...\" />`) strings. These paths represent the vector shapes to be morphed, and their structure affects the smoothness and accuracy of the animation.",
+        "classes": [
+            {"name": "Choosing shapes", "description": "Morphing works best when shapes are visually similar, closed (end with 'Z'), and have relatively matching geometry. Drastic differences can result in awkward transitions."},
+            {"name": "Converting shapes to path", "description": "To convert shapes like <rect>, <circle>, or <polygon> into paths, use a design tool (e.g. Figma: Right-click → 'Outline Stroke' → 'Flatten' → Export as SVG) or an online tool like svg2path.vercel.app."}
+        ]
+    },
+    "examples": [
+        {"title": "Scroll page to observe (Bottom right)", "file": "ExampleMorphOnScroll", "code": ""}
+    ]
+  }

@@ -39,7 +39,7 @@ const Sidebar = ({ onTabSelect, curTab }: SidebarProps) => {
       {/* Category Sections */}
       <div className="text-gray-500 text-sm font-semibold text-left">HOVER</div>
       <ul className="ml-4 mb-4 text-left">
-        <SidebarItem title="Color" onClick={onTabSelect} isActive={curTab === "Color"}/>
+        <SidebarItem title="Animate" onClick={onTabSelect} isActive={curTab === "Animate"}/>
         <SidebarItem title="Glow" onClick={onTabSelect} isActive={curTab === "Glow"}/>
         {/* <SidebarItem title="React - pulse, spin, bounce" onClick={onTabSelect} /> */}
       </ul>
