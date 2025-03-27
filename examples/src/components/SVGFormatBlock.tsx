@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CodeBlock } from "./CodeBlock"; // Adjust the import if needed
 import { FiChevronDown, FiChevronUp } from "react-icons/fi";
-import { SvgRequirement, SVGClass } from "./types";
+import { SvgRequirement, SvgClass } from "./types";
 
 interface SVGFormatBlockProps {
   format: SvgRequirement;
@@ -24,7 +24,7 @@ export const SVGFormatBlock = ({ format }: SVGFormatBlockProps) => {
 
       <table className="table-auto text-left ml-5">
         <tbody>
-          {classes.map((row: SVGClass, i: number) => (
+          {classes.map((row: SvgClass, i: number) => (
             <tr key={i}>
               <td className="font-bold pr-4">{row.name}</td>
               <td className="pl-4">{row.description}</td>
