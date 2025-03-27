@@ -1,7 +1,11 @@
 import { ArrowRight } from "lucide-react";
 import { CodeBlock } from '../components/CodeBlock.tsx'
 
-export default function GettingStarted({ onTabSelect }) {
+interface GettingStartedProps {
+  onTabSelect: (tabId: string) => void; // adjust type as needed
+}
+
+export default function GettingStarted({ onTabSelect }: GettingStartedProps) {
 
   const npmInstall = `npm install interactive-illustrations`;
   const importComponent = `import { RotateObject } from 'interactive-illustrations';`;

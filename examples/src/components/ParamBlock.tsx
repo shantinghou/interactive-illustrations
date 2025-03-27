@@ -1,6 +1,10 @@
-import React from "react";
+import { Param } from './types';
 
-export const ParamBlock = ({params}) => {
+interface ParamBlockProps {
+  params: Param[];
+}
+
+export const ParamBlock = ({ params }: ParamBlockProps) => {
 
   return (
     <table className="table-auto text-left">
@@ -11,7 +15,7 @@ export const ParamBlock = ({params}) => {
         </tr>
       </thead>
       <tbody className="border-t border-gray-300 font-code text-xs">
-        {params.map((row, i) => (
+        {params.map((row: Param, i: number) => (
           <tr key={i} className="border-b border-gray-300">
             <td className="p-2">{row.prop}</td>
             <td className="p-2 pl-10">{row.description}</td>

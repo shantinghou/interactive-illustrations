@@ -1,10 +1,24 @@
-import React from "react";
 import { ParamBlock } from "./ParamBlock.tsx";
 import { CodeBlock } from "./CodeBlock.tsx";
 import { SVGFormatBlock } from './SVGFormatBlock.tsx';
 import { ComponentLoader } from './ComponentLoader.tsx';
+import { SvgRequirement, Param, Example } from './types';
 
-export const FeaturePage = ({ featureFile }) => {
+
+interface FeatureFile {
+  tab: string;
+  feature: string;
+  featureDescription: string;
+  params: Param[];
+  examples: Example[];
+  ['svg-requirement']?: SvgRequirement;
+}
+
+interface FeaturePageProps {
+  featureFile: FeatureFile;
+}
+
+export const FeaturePage = ({ featureFile }: FeaturePageProps) => {
   const { tab, feature, featureDescription, params, examples } = featureFile;
 
   return (
@@ -20,8 +34,8 @@ export const FeaturePage = ({ featureFile }) => {
         )}
 
         <p className="text-base font-semibold mt-6">EXAMPLES</p>
-        {examples && examples.map(example => (
-          <div className="">
+        {examples && examples.map((example: Example, idx: number) => (
+          <div key={idx}>
             <p className="text-lg font-bold pb-5">{example.title}</p>
             <div className="flex gap-15 items-center">
               <div>

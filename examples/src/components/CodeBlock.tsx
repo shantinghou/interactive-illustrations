@@ -1,7 +1,12 @@
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { lucario  } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
-export const CodeBlock = ({ code, language = "tsx"  }) => {
+interface CodeBlockProps {
+  code: string;
+  language?: string;
+}
+
+export const CodeBlock = ({ code, language = "tsx" }: CodeBlockProps) => {
   return (
     <div className="min-w-2xl max-w-5xl">
       <SyntaxHighlighter

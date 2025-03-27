@@ -3,7 +3,11 @@ import { Blue, Red, Yellow } from './assets/example-svg';
 import { MultiEyeInteraction } from "interactive-illustrations";
 import bgScribble from './assets/design/background-scribbles.png';
 
-export default function Header({onTabSelect}) {
+interface HeaderProps {
+    onTabSelect: (tabId: string) => void; // adjust type as needed
+}
+
+export default function Header({ onTabSelect }: HeaderProps) {
     return (
         <div 
             className="bg-cover bg-right-top p-10 text-center justify-items-center items-center h-screen"

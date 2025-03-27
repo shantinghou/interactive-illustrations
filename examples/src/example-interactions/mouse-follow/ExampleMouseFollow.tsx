@@ -21,7 +21,7 @@ export default function ExampleMouseFollow() {
             {on ? (
                 <SvgFollowMouse src={<BIRD />} delay={0.9} size={1.7} opacity={0.7} />
             ) : (
-                <BIRD className="w-50 h-auto"/>
+                <BIRD/>
             )}
             <p
                 className="bg-gray-300 rounded-md p-2 mt-5 w-fit cursor-pointer hover:bg-gray-400"
