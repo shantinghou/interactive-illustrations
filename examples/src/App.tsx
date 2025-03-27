@@ -5,8 +5,8 @@ import { useState, useEffect } from 'react';
 import Sidebar from "./Sidebar";
 import Header from './Header';
 
-import { FakeCursor } from './assets/example-svg';
-import { SvgFollowMouse } from "interactive-illustrations";
+// import { FakeCursor } from './assets/example-svg';
+// import { SvgFollowMouse } from "interactive-illustrations";
 
 import { eyeFollowFile, 
         mouseRotateFile, 

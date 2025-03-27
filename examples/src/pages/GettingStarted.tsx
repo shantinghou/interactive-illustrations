@@ -1,4 +1,3 @@
-import { useState, useEffect } from 'react';
 import { ArrowRight } from "lucide-react";
 import { CodeBlock } from '../components/CodeBlock.tsx'
 
@@ -33,9 +32,7 @@ export default function GettingStarted({ onTabSelect }) {
       <div className="p-5 flex items-center space-x-2 justify-end">
         <button 
             className="cursor-pointer rounded-md !bg-[#213547] text-white font-body font-bold px-3 py-2 hover:!bg-[#2c4a5e] transition-colors inline-flex items-center space-x-2" 
-            onClick={(e) => {
-                onTabSelect && onTabSelect('Documentation/GettingStarted/SvgToReact');
-            }}
+            onClick={() => {onTabSelect('Documentation/GettingStarted/SvgToReact')}}
         >
             Animate your SVGs now <ArrowRight/>
         </button>

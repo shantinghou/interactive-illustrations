@@ -43,9 +43,7 @@ export default function Header({onTabSelect}) {
             <div className="p-5">
                 <p 
                     className="cursor-pointer rounded-md bg-[#213547] text-white font-body font-bold p-3 hover:bg-[#2c4a5e] transition-colors" 
-                    onClick={(e) => {
-                        onTabSelect && onTabSelect('Documentation');
-                    }}
+                    onClick={() => {onTabSelect('Documentation')}}
                 >
                     Get Started
                 </p>

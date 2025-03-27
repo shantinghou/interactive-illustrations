@@ -1,5 +1,4 @@
-import { Star, BookOpen, ChevronDown, ChevronRight } from "lucide-react";
-import { useState } from "react";
+import { Star, BookOpen, ChevronDown } from "lucide-react";
 
 interface SidebarProps {
   onTabSelect: (tab: string) => void;
@@ -7,7 +6,6 @@ interface SidebarProps {
 }
 
 const Sidebar = ({ onTabSelect, curTab }: SidebarProps) => {
-  const [isDocumentationOpen, setIsDocumentationOpen] = useState(true);
 
   return (
     <aside className="w-72 h-screen bg-gray-100 p-4 fixed left-0 top-0 font-body">
@@ -39,12 +37,12 @@ const Sidebar = ({ onTabSelect, curTab }: SidebarProps) => {
         >
           <BookOpen size={18} />
           <span>Documentation</span>
-          {isDocumentationOpen ? <ChevronDown size={16} /> : <ChevronRight size={16} />}
+          {<ChevronDown size={16} />}
         </button>
 
       </nav>
       {/* Hover Section */}
-      {isDocumentationOpen && (
+      {(
         <>
           <div className="ml-4 text-gray-500 text-sm font-semibold text-left">GETTING STARTED</div>
           <ul className="ml-6 mb-4 text-left">
@@ -65,7 +63,7 @@ const Sidebar = ({ onTabSelect, curTab }: SidebarProps) => {
       )}
 
       {/* Hover Section */}
-      {isDocumentationOpen && (
+      {(
         <>
           <div className="ml-4 text-gray-500 text-sm font-semibold text-left">HOVER</div>
           <ul className="ml-6 mb-4 text-left">
@@ -86,7 +84,7 @@ const Sidebar = ({ onTabSelect, curTab }: SidebarProps) => {
       )}
 
       {/* Scroll Section */}
-      {isDocumentationOpen && (
+      {(
         <>
           <div className="ml-4 text-gray-500 text-sm font-semibold text-left">SCROLL</div>
           <ul className="ml-6 mb-4 text-left">
@@ -107,7 +105,7 @@ const Sidebar = ({ onTabSelect, curTab }: SidebarProps) => {
       )}
 
       {/* Mouse-Follow Section */}
-      {isDocumentationOpen && (
+      {(
         <>
           <div className="ml-4 text-gray-500 text-sm font-semibold text-left">MOUSE-FOLLOW</div>
           <ul className="ml-6 mb-4 text-left">

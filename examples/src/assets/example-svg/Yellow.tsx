@@ -1,5 +1,3 @@
-import { Group } from "lucide-react";
-
 const Yellow = () => (
     <svg width="184" height="184" viewBox="0 0 184 184" fill="none" xmlns="http://www.w3.org/2000/svg">
         <rect width="184" height="184" rx="92" fill="#F2D14D"/>

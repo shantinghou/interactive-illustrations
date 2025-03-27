@@ -1,7 +1,7 @@
 // ComponentLoader.tsx
 import React, { Suspense } from "react";
 
-const componentMap: Record<string, () => Promise<{ default: React.ComponentType<any> }>> = {
+const componentMap: Record<string, () => Promise<{ default: React.ComponentType<unknown> }>> = {
   "ExampleEyeInteraction": () => import("../example-interactions/mouse-follow/ExampleEyeInteraction.tsx"),
   "ExampleMouseRotateFullObject": () => import("..//example-interactions/mouse-follow/ExampleMouseRotateFullObject.tsx"),
   "ExampleMouseRotateObject": () => import("..//example-interactions/mouse-follow/ExampleMouseRotateObject.tsx"),

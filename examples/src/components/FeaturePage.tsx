@@ -20,7 +20,7 @@ export const FeaturePage = ({ featureFile }) => {
         )}
 
         <p className="text-base font-semibold mt-6">EXAMPLES</p>
-        {examples && examples.map((example, i) => (
+        {examples && examples.map(example => (
           <div className="">
             <p className="text-lg font-bold pb-5">{example.title}</p>
             <div className="flex gap-15 items-center">
