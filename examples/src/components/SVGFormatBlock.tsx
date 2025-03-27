@@ -43,7 +43,7 @@ export const SVGFormatBlock = ({ format }: SVGFormatBlockProps) => {
         </p>
       </div>}
       
-      {expanded && <CodeBlock code={example} />}
+      {expanded && example && <CodeBlock code={example} />}
     </div>
   );
 };
