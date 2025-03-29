@@ -5,9 +5,6 @@ import { useState, useEffect } from 'react';
 import Sidebar from "./Sidebar";
 import Header from './Header';
 
-// import { FakeCursor } from './assets/example-svg';
-// import { SvgFollowMouse } from "interactive-illustrations";
-
 import { eyeFollowFile, 
         mouseRotateFile, 
         scrollRotateFile, 
@@ -21,6 +18,20 @@ import { FeaturePage } from "./components/FeaturePage.tsx";
 
 function App() {
   const [selectedTab, setSelectedTab] = useState("Header");
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Handle screen size changes
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1000);
+    };
+
+    // Set initial state
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Update URL when tab changes
   const handleTabSelect = (tab: string) => {
@@ -67,22 +78,32 @@ function App() {
   };
 
   return (
-    <div 
-      className="flex min-h-screen"
-    >
-      {/* Sidebar */}
-      <Sidebar onTabSelect={handleTabSelect} curTab={selectedTab}/>
+    <div className="flex min-h-screen bg-white" >
+      <header className="fixed top-0 left-0 right-0 h-15 bg-white shadow-xs z-60 flex items-center px-4">
+        <div className="flex items-center justify-between w-full">
+          {/* Logo - centered on mobile, left-aligned on desktop */}
+          <div className="mx-auto sm:ml-0">
+            <img 
+              className="cursor-pointer" 
+              width={'100px'} 
+              height={'50px'} 
+              src="/svggles.png" 
+              alt="Svggle Logo" 
+              onClick={() => handleTabSelect('Home')}
+            />
+          </div>
+        </div>
+      </header>
 
-      {/* Main Content */}
-      <div className="ml-72 w-full">
-        {renderContent()}
+      <div className="flex pt-16 min-h-screen w-full">
+        {/* Sidebar */}
+        <Sidebar onTabSelect={handleTabSelect} curTab={selectedTab}/>
+
+        {/* Main Content */}
+        <div className={`${isMobile ? `ml-0 w-full pt-10` : `ml-72 w-[calc(100vw-18rem)]`} transition-all duration-300`}>
+          {renderContent()}
+        </div>
       </div>
-      {/* <SvgFollowMouse
-        src={<FakeCursor/>}
-        delay={0.4} 
-        size={0.3}
-        opacity={1.0}
-      /> */}
     </div>
       
     

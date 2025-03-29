@@ -1,4 +1,3 @@
-import Viewbox from './assets/design/viewbox.svg';
 import { Blue, Red, Yellow } from './assets/example-svg';
 import { MultiEyeInteraction } from "interactive-illustrations";
 import bgScribble from './assets/design/background-scribbles.png';
@@ -13,8 +12,8 @@ export default function Header({ onTabSelect }: HeaderProps) {
             className="bg-cover bg-right-top p-10 text-center justify-items-center items-center h-screen"
             style={{ backgroundImage: `url(${bgScribble})`}}
             >
-            <h1 className="text-8xl mt-40 mb-4 font-display text-center">WELCOME</h1>
-            <div className="flex flex-row flex-wrap justify-center gap-0 ">
+            <h1 className="mt-10 md:mt-30 lg:mt-40 mb-4 font-display text-center text-4xl md:text-6xl lg:text-8xl">WELCOME</h1>
+            <div className="flex flex-row flex-wrap justify-center gap-0 p-10">
                 <div className="justify-items-center">
                     <MultiEyeInteraction
                     src={<Blue/>} 
@@ -40,9 +39,8 @@ export default function Header({ onTabSelect }: HeaderProps) {
                     />
                 </div>
             </div>
-            <div className="relative p-5">
-                <img src={Viewbox} alt="Your SVG" className="w-full h-auto"/>
-                <h3 className="absolute top-12 left-1/2 transform -translate-x-1/2 text-2xl font-subtitle underline underline-offset-4 w-full">SVggles is a React utility package for creating interactive illustrations using SVGs.</h3>
+            <div className="p-5">
+                <h3 className="text-lg md:text-2xl font-subtitle underline underline-offset-4 w-full">SVggles is a React utility package for creating interactive illustrations using SVGs.</h3>
             </div>
             <div className="p-5">
                 <p 

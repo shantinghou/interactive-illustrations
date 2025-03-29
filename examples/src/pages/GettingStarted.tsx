@@ -12,7 +12,7 @@ export default function GettingStarted({ onTabSelect }: GettingStartedProps) {
 
   
   return (
-    <div className="space-y-4 m-20 font-body space-y-5">
+    <div className="m-5 md:m-10 xl:m-20 font-body space-y-5">
       <p className="text-sm font-semibold text-gray-500">INSTALLATION</p>
       <p className="text-3xl font-bold">Get started with Svggles</p>
       <p className="text-lg">

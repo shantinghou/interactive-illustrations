@@ -16,7 +16,7 @@ export const SVGFormatBlock = ({ format }: SVGFormatBlockProps) => {
   };
 
   return (
-    <div className="my-10 bg-[#F3F1F1] p-5 rounded-md">
+    <div className={`my-10 bg-[#F3F1F1] p-5 rounded-md w-full`}>
       <p className="text-lg font-bold">Input SVG structure requirement</p>
       <p className="text-base">
         {explanation}

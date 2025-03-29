@@ -8,7 +8,7 @@ interface CodeBlockProps {
 
 export const CodeBlock = ({ code, language = "tsx" }: CodeBlockProps) => {
   return (
-    <div className="min-w-2xl max-w-5xl">
+    <div className={`min-w-24 max-w-screen`}>
       <SyntaxHighlighter
         language={language}
         style={lucario}

@@ -13,9 +13,10 @@ const code = `const Example = () => (
       </g>
     </svg>
 );`
+
 export default function SVGToReactGuide() {
   return (
-    <div className="space-y-4 m-20 font-body space-y-5">
+    <div className="m-5 md:m-10 xl:m-20 font-body space-y-5">
       <p className="text-sm font-semibold text-gray-500">CORE CONCEPTS</p>
       <p className="text-3xl font-bold">Converting your SVG to React Component</p>
 
