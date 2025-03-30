@@ -65,7 +65,7 @@ const Sidebar = ({ onTabSelect, curTab }: SidebarProps) => {
           
           <button
             className={`cursor-pointer flex items-center gap-2 p-2 rounded-md w-full hover:!bg-gray-200 ${curTab.startsWith('Documentation') ? '!bg-gray-200' : ''}`}
-            onClick={() => {handleTabSelect('Documentation')}}
+            onClick={() => {handleTabSelect('Documentation/GettingStarted/Installation')}}
           >
             <BookOpen size={18} />
             <span>Documentation</span>

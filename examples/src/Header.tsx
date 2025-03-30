@@ -12,7 +12,7 @@ export default function Header({ onTabSelect }: HeaderProps) {
             className="bg-cover bg-right-top p-10 text-center justify-items-center items-center h-screen"
             style={{ backgroundImage: `url(${bgScribble})`}}
             >
-            <h1 className="mt-10 md:mt-30 lg:mt-40 mb-4 font-display text-center text-4xl md:text-6xl lg:text-8xl">WELCOME</h1>
+            <h1 className="mt-5 md:mt-10 lg:mt-20 mb-4 font-display text-center text-4xl md:text-6xl lg:text-8xl">WELCOME</h1>
             <div className="flex flex-row flex-wrap justify-center gap-0 p-10">
                 <div className="justify-items-center">
                     <MultiEyeInteraction
@@ -39,13 +39,14 @@ export default function Header({ onTabSelect }: HeaderProps) {
                     />
                 </div>
             </div>
-            <div className="p-5">
-                <h3 className="text-lg md:text-2xl font-subtitle underline underline-offset-4 w-full">SVggles is a React utility package for creating interactive illustrations using SVGs.</h3>
+            <div className="p-5 space-y-5">
+                <h3 className="text-lg md:text-2xl font-subtitle w-full lg:px-20">Svggles is a React utility package for creating interactive illustrations using SVGs.</h3>
+                <p className="text-sm md:text-md font-code underline underline-offset-4">SVggles is published as the `interactive-illustrations` npm package.</p>
             </div>
             <div className="p-5">
                 <p 
                     className="cursor-pointer rounded-md bg-[#213547] text-white font-body font-bold p-3 hover:bg-[#2c4a5e] transition-colors" 
-                    onClick={() => {onTabSelect('Documentation')}}
+                    onClick={() => {onTabSelect('Documentation/GettingStarted/Installation')}}
                 >
                     Get Started
                 </p>

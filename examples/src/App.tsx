@@ -35,6 +35,10 @@ function App() {
 
   // Update URL when tab changes
   const handleTabSelect = (tab: string) => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
     setSelectedTab(tab);
     const params = new URLSearchParams(window.location.search);
     params.set('tab', tab);
@@ -79,8 +83,8 @@ function App() {
 
   return (
     <div className="flex min-h-screen bg-white" >
-      <header className="fixed top-0 left-0 right-0 h-15 bg-white shadow-xs z-60 flex items-center px-4">
-        <div className="flex items-center justify-between w-full">
+      <header className="fixed top-0 left-0 right-0 h-15 shadow-xs z-60 flex items-center px-4 bg-white">
+        <div className="flex items-center justify-between w-full ">
           {/* Logo - centered on mobile, left-aligned on desktop */}
           <div className="mx-auto sm:ml-0">
             <img 
