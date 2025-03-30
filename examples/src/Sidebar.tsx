@@ -50,13 +50,13 @@ const Sidebar = ({ onTabSelect, curTab }: SidebarProps) => {
       <aside 
         className={`${isMobile ? 'w-72 fixed left-0 top-14 z-40 transform transition-transform duration-300 ease-in-out' : 'w-72 z-20 fixed left-0 top-14'} 
         ${isMobile && !isMobileMenuOpen ? '-translate-x-full' : 'translate-x-0'} 
-        bg-[#F3F3F3] p-4 font-body h-screen overflow-y-auto`}
+        bg-gray-100 p-4 font-body h-screen overflow-y-auto`}
         >
 
         {/* Top Menu Items */}
         <nav className="mb-4 space-y-1">
           <button
-            className={`cursor-pointer flex items-center gap-2 p-2 rounded-md w-full hover:!bg-gray-200 ${curTab === 'CreatorsHighlights' ? '!bg-gray-200' : ''}`}
+            className={`cursor-pointer flex items-center gap-2 p-2 rounded-md w-full !bg-gray-100 hover:!bg-gray-200 ${curTab === 'CreatorsHighlights' ? '!bg-gray-200' : ''}`}
             onClick={() => handleTabSelect('CreatorsHighlights')}
           >
             <Star size={18} />
@@ -64,7 +64,7 @@ const Sidebar = ({ onTabSelect, curTab }: SidebarProps) => {
           </button>
           
           <button
-            className={`cursor-pointer flex items-center gap-2 p-2 rounded-md w-full hover:!bg-gray-200 ${curTab.startsWith('Documentation') ? '!bg-gray-200' : ''}`}
+            className={`cursor-pointer flex items-center gap-2 p-2 rounded-md w-full !bg-gray-100 hover:!bg-gray-200 ${curTab.startsWith('Documentation') ? '!bg-gray-200' : ''}`}
             onClick={() => {handleTabSelect('Documentation/GettingStarted/Installation')}}
           >
             <BookOpen size={18} />

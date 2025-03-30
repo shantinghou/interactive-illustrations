@@ -59,7 +59,7 @@ function App() {
       // Main
       case 'CreatorsHighlights': return <CreatorHighlights/>;
       case 'Documentation/GettingStarted/Installation': return <GettingStarted onTabSelect={handleTabSelect}/>;
-      case 'Documentation/GettingStarted/SvgToReact': return <SVGToReactGuide/>;
+      case 'Documentation/GettingStarted/SvgToReact': return <SVGToReactGuide onTabSelect={handleTabSelect}/>;
       case 'Documentation': return <GettingStarted onTabSelect={handleTabSelect}/>;
 
       // Hover
@@ -83,7 +83,7 @@ function App() {
 
   return (
     <div className="flex min-h-screen bg-white" >
-      <header className="fixed top-0 left-0 right-0 h-15 shadow-xs z-60 flex items-center px-4 bg-white">
+      <header className="fixed top-0 left-0 right-0 h-15 shadow-xs z-60 flex items-center px-4 bg-gray-50">
         <div className="flex items-center justify-between w-full ">
           {/* Logo */}
           <img 
@@ -118,7 +118,7 @@ function App() {
         
       </header>
 
-      <div className="flex pt-16 min-h-screen w-full">
+      <div className="flex pt-14 min-h-screen w-full">
         {/* Sidebar */}
         <Sidebar onTabSelect={handleTabSelect} curTab={selectedTab}/>
 

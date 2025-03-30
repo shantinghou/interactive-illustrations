@@ -1,6 +1,6 @@
 {
   "name": "interactive-illustrations",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "description": "A React library for interactive SVG animations",
   "main": "dist/index.js",
   "type": "module",
@@ -14,7 +14,7 @@
     "require": "./dist/index.js",
     "types": "./dist/index.d.ts"
   },
-  "keywords": [],
+  "keywords": ["svg", "illustration", "interactive", "animation", "svggles"],
   "author": "",
   "license": "ISC",
   "dependencies": {

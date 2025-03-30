@@ -1,4 +1,5 @@
 import { CodeBlock } from "../components/CodeBlock.tsx"
+import { ArrowRight } from "lucide-react";
 
 const code = `const Example = () => (
     <svg width="208" height="187" viewBox="0 0 208 187" fill="none"
@@ -14,7 +15,11 @@ const code = `const Example = () => (
     </svg>
 );`
 
-export default function SVGToReactGuide() {
+interface SVGToReactGuideProps {
+    onTabSelect: (tabId: string) => void; // adjust type as needed
+  }
+
+export default function SVGToReactGuide({ onTabSelect }: SVGToReactGuideProps) {
   return (
     <div className="m-5 md:m-10 xl:m-20 font-body space-y-5">
       <p className="text-sm font-semibold text-gray-500">CORE CONCEPTS</p>
@@ -54,6 +59,14 @@ export default function SVGToReactGuide() {
         <p>
           That's it! You can now use your SVG as a React component: <code>&lt;Example /&gt;</code>
         </p>
+      </div>
+      <div className="p-5 flex items-center space-x-2 justify-end">
+        <button 
+            className="cursor-pointer rounded-md !bg-[#213547] text-white font-body font-bold px-3 py-2 hover:!bg-[#2c4a5e] transition-colors inline-flex items-center space-x-2" 
+            onClick={() => {onTabSelect('Documentation/Hover/Animate')}}
+        >
+            Start Creating <ArrowRight/>
+        </button>
       </div>
     </div>
   );

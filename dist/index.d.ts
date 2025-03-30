@@ -29,12 +29,11 @@ interface RotateObjectProps {
 }
 declare const RotateObject: React.FC<RotateObjectProps>;
 
-type AnimationType = "pulse" | "spin" | "wiggle" | "tilt" | "jelly" | "pop";
 type AnimatedOnHoverProps = {
     src: React.ReactElement;
     width?: number;
     height?: number;
-    animation?: AnimationType;
+    animation?: String;
 };
 declare const AnimatedOnHover: ({ src, width, height, animation }: AnimatedOnHoverProps) => react_jsx_runtime.JSX.Element;
 
@@ -55,7 +54,10 @@ type MorphOnScrollProps = {
     viewBox?: string;
     color?: string;
     scrollSpeed?: number;
+    containerId?: string;
+    scrollStartOffset?: number;
+    scrollEndOffset?: number;
 };
-declare const MorphOnScroll: ({ startPath, endPath, width, height, viewBox, color, scrollSpeed, }: MorphOnScrollProps) => react_jsx_runtime.JSX.Element;
+declare const MorphOnScroll: ({ startPath, endPath, width, height, viewBox, color, scrollSpeed, containerId, scrollStartOffset, scrollEndOffset, }: MorphOnScrollProps) => react_jsx_runtime.JSX.Element;
 
 export { AnimatedOnHover, GlowOnHover, MorphOnScroll, MultiEyeInteraction, RotateObject, SVGFollowMouse as SvgFollowMouse };

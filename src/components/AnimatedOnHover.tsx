@@ -1,13 +1,11 @@
 import React, { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
 
-type AnimationType = "pulse" | "spin" | "wiggle" | "tilt" | "jelly" | "pop";
-
 type AnimatedOnHoverProps = {
   src: React.ReactElement;
   width?: number;
   height?: number;
-  animation?: AnimationType;
+  animation?: String;
 };
 
 const AnimatedOnHover = ({
