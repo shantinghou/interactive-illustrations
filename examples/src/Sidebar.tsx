@@ -50,7 +50,7 @@ const Sidebar = ({ onTabSelect, curTab }: SidebarProps) => {
       <aside 
         className={`${isMobile ? 'w-72 fixed left-0 top-14 z-40 transform transition-transform duration-300 ease-in-out' : 'w-72 z-20 fixed left-0 top-14'} 
         ${isMobile && !isMobileMenuOpen ? '-translate-x-full' : 'translate-x-0'} 
-        bg-gray-100 p-4 font-body h-screen overflow-y-auto`}
+        bg-[#F3F3F3] p-4 font-body h-screen overflow-y-auto`}
         >
 
         {/* Top Menu Items */}
