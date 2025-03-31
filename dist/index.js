@@ -801,11 +801,11 @@ const MultiEyeInteraction = ({ src, speed = 0.2, width = "100%", height = "100%"
     return (jsxRuntimeExports.jsx("svg", { ref: svgRef, width: width, height: height, viewBox: viewBox, preserveAspectRatio: "xMidYMid meet", children: React.isValidElement(src) ? src : null }));
 };
 
-const SVGFollowMouse = ({ src, size = 1, opacity = 0.8, delay = 0.1, ease = "power1.out" }) => {
+const SVGFollowMouse = ({ src, size = 1, opacity = 0.8, delay = 0.1, ease = "power1.out", }) => {
     const containerRef = React.useRef(null);
     // Default intrinsic dimensions if not provided by the SVG
-    let baseWidth = 100;
-    let baseHeight = 100;
+    const baseWidth = 100;
+    const baseHeight = 100;
     // let svgViewBox: string | undefined = undefined;
     const svgRef = React.useRef(null);
     const [viewBox, setViewBox] = React.useState("0 0 100 100"); // Default viewBox
@@ -827,8 +827,8 @@ const SVGFollowMouse = ({ src, size = 1, opacity = 0.8, delay = 0.1, ease = "pow
     const containerHeight = baseHeight * size;
     React.useEffect(() => {
         const handleMouseMove = (event) => {
-            let left = event.clientX - containerWidth / 2;
-            let top = event.clientY - containerHeight / 2;
+            const left = event.clientX - containerWidth / 2;
+            const top = event.clientY - containerHeight / 2;
             if (containerRef.current) {
                 gsap.gsap.to(containerRef.current, {
                     left,
@@ -852,11 +852,11 @@ const SVGFollowMouse = ({ src, size = 1, opacity = 0.8, delay = 0.1, ease = "pow
         }, children: jsxRuntimeExports.jsx("svg", { ref: svgRef, width: containerWidth, height: containerHeight, viewBox: viewBox, preserveAspectRatio: "xMidYMid meet", children: React.isValidElement(src) ? src : null }) }));
 };
 
-const RotateObject = ({ src, size = 1, speed = 0.2, offset = 0, clockwise = true, respondsTo = "scroll" }) => {
+const RotateObject = ({ src, size = 1, speed = 0.2, offset = 0, clockwise = true, respondsTo = "scroll", }) => {
     const svgRef = React.useRef(null);
     const [viewBox, setViewBox] = React.useState("0 0 100 100"); // Default viewBox
-    let baseWidth = 100;
-    let baseHeight = 100;
+    const baseWidth = 100;
+    const baseHeight = 100;
     const rotationRef = React.useRef(0);
     // Update viewBox based on SVG content (if needed)
     React.useEffect(() => {
@@ -901,7 +901,7 @@ const RotateObject = ({ src, size = 1, speed = 0.2, offset = 0, clockwise = true
                     rotation: `+=${rotationDelta}`,
                     ease: "power1.out",
                     transformOrigin: "50% 50%",
-                    duration: speed
+                    duration: speed,
                 });
             };
             window.addEventListener("scroll", handleScroll);
@@ -923,7 +923,8 @@ const RotateObject = ({ src, size = 1, speed = 0.2, offset = 0, clockwise = true
                 // Retrieve the current continuous rotation.
                 const currentRotation = rotationRef.current;
                 // Adjust computedAngle by adding multiples of 360 to minimize the jump from currentRotation.
-                const continuousTarget = computedAngle + Math.round((currentRotation - computedAngle) / 360) * 360;
+                const continuousTarget = computedAngle +
+                    Math.round((currentRotation - computedAngle) / 360) * 360;
                 // Animate to the new continuous rotation target.
                 gsap.gsap.to(targetElement, {
                     rotation: continuousTarget + offset,
@@ -932,7 +933,7 @@ const RotateObject = ({ src, size = 1, speed = 0.2, offset = 0, clockwise = true
                     transformOrigin: "50% 50%",
                     onComplete: () => {
                         rotationRef.current = continuousTarget;
-                    }
+                    },
                 });
             };
             window.addEventListener("mousemove", handleMouseMove);
@@ -942,7 +943,7 @@ const RotateObject = ({ src, size = 1, speed = 0.2, offset = 0, clockwise = true
     return (jsxRuntimeExports.jsx("svg", { ref: svgRef, width: containerWidth, height: containerHeight, viewBox: viewBox, preserveAspectRatio: "xMidYMid meet", children: React.isValidElement(src) ? src : null }));
 };
 
-const AnimatedOnHover = ({ src, width = 300, height = 300, animation = "pulse" }) => {
+const AnimatedOnHover = ({ src, width = 300, height = 300, animation = "pulse", }) => {
     const svgRef = React.useRef(null);
     const wrapperRef = React.useRef(null);
     const [viewBox, setViewBox] = React.useState("0 0 300 300");
@@ -979,7 +980,7 @@ const AnimatedOnHover = ({ src, width = 300, height = 300, animation = "pulse" }
                         repeat: -1,
                         yoyo: true,
                         duration: 0.6,
-                        ease: "power1.inOut"
+                        ease: "power1.inOut",
                     });
                 }
                 else if (animation === "spin") {
@@ -988,7 +989,7 @@ const AnimatedOnHover = ({ src, width = 300, height = 300, animation = "pulse" }
                         repeat: -1,
                         duration: 1.5,
                         ease: "linear",
-                        transformOrigin: "50% 50%"
+                        transformOrigin: "50% 50%",
                     });
                 }
                 else if (animation === "wiggle") {
@@ -997,7 +998,7 @@ const AnimatedOnHover = ({ src, width = 300, height = 300, animation = "pulse" }
                         repeat: -1,
                         yoyo: true,
                         duration: 0.1,
-                        ease: "power1.inOut"
+                        ease: "power1.inOut",
                     });
                 }
                 else if (animation === "tilt") {
@@ -1007,7 +1008,7 @@ const AnimatedOnHover = ({ src, width = 300, height = 300, animation = "pulse" }
                         repeat: -1,
                         duration: 0.3,
                         ease: "sine.inOut",
-                        transformOrigin: "50% 50%"
+                        transformOrigin: "50% 50%",
                     });
                 }
                 else if (animation === "jelly") {
@@ -1018,7 +1019,7 @@ const AnimatedOnHover = ({ src, width = 300, height = 300, animation = "pulse" }
                         yoyo: true,
                         repeat: -1,
                         ease: "power1.inOut",
-                        transformOrigin: "50% 50%"
+                        transformOrigin: "50% 50%",
                     });
                 }
                 else if (animation === "pop") {
@@ -1028,7 +1029,7 @@ const AnimatedOnHover = ({ src, width = 300, height = 300, animation = "pulse" }
                         ease: "power1.out",
                         yoyo: true,
                         repeat: 1,
-                        transformOrigin: "50% 50%"
+                        transformOrigin: "50% 50%",
                     });
                 }
             };
@@ -1051,7 +1052,7 @@ const AnimatedOnHover = ({ src, width = 300, height = 300, animation = "pulse" }
     return (jsxRuntimeExports.jsx("svg", { ref: svgRef, width: width, height: height, viewBox: viewBox, xmlns: "http://www.w3.org/2000/svg", style: { overflow: "visible" }, children: jsxRuntimeExports.jsx("g", { ref: wrapperRef, style: { overflow: "visible" }, children: src }) }));
 };
 
-const GlowOnHover = ({ src, width = 300, height = 300, scaleFactor = 1.2, color = "#D9D9D9" }) => {
+const GlowOnHover = ({ src, width = 300, height = 300, scaleFactor = 1.2, color = "#D9D9D9", }) => {
     const svgRef = React.useRef(null);
     const wrapperRef = React.useRef(null);
     const [viewBox, setViewBox] = React.useState("0 0 300 300"); // use a safe default
@@ -1083,12 +1084,12 @@ const GlowOnHover = ({ src, width = 300, height = 300, scaleFactor = 1.2, color 
             scale: scaleFactor,
             filter: `drop-shadow(0px 0px 10px ${color})`,
             transformOrigin: "50% 50%",
-            duration: 0.5
+            duration: 0.5,
         });
         const handleLeave = (el) => () => gsap.gsap.to(el, {
             scale: 1,
             filter: "none",
-            duration: 0.3
+            duration: 0.3,
         });
         const listeners = [];
         glowElements.forEach((el) => {
@@ -4558,7 +4559,9 @@ const MorphOnScroll = ({ startPath, endPath, width = 300, height = 300, viewBox 
     const [morphedPath, setMorphedPath] = React.useState(startPath);
     const containerRef = React.useRef(null);
     React.useEffect(() => {
-        const interpolator = interpolate(startPath, endPath, { maxSegmentLength: 0.5 });
+        const interpolator = interpolate(startPath, endPath, {
+            maxSegmentLength: 0.5,
+        });
         // Find the container if specified, otherwise use window
         if (containerId) {
             containerRef.current = document.getElementById(containerId);
@@ -4593,7 +4596,14 @@ const MorphOnScroll = ({ startPath, endPath, width = 300, height = 300, viewBox 
         return () => {
             scrollElement.removeEventListener("scroll", handleScroll);
         };
-    }, [startPath, endPath, scrollSpeed, containerId, scrollStartOffset, scrollEndOffset]);
+    }, [
+        startPath,
+        endPath,
+        scrollSpeed,
+        containerId,
+        scrollStartOffset,
+        scrollEndOffset,
+    ]);
     return (jsxRuntimeExports.jsx("svg", { ref: svgRef, width: width, height: height, viewBox: viewBox, xmlns: "http://www.w3.org/2000/svg", children: jsxRuntimeExports.jsx("path", { d: morphedPath, fill: color }) }));
 };
 

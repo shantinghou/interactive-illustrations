@@ -14,7 +14,7 @@ const GlowOnHover = ({
   width = 300,
   height = 300,
   scaleFactor = 1.2,
-  color = "#D9D9D9"
+  color = "#D9D9D9",
 }: GlowOnHoverProps) => {
   const svgRef = useRef<SVGSVGElement | null>(null);
   const wrapperRef = useRef<SVGGElement | null>(null);
@@ -31,7 +31,7 @@ const GlowOnHover = ({
         if (bbox.width > 0 && bbox.height > 0) {
           const padding = 20; // give breathing room for glow
           setViewBox(
-            `${bbox.x - padding} ${bbox.y - padding} ${bbox.width} ${bbox.height}`
+            `${bbox.x - padding} ${bbox.y - padding} ${bbox.width} ${bbox.height}`,
           );
         }
       } catch (e) {
@@ -53,17 +53,21 @@ const GlowOnHover = ({
         scale: scaleFactor,
         filter: `drop-shadow(0px 0px 10px ${color})`,
         transformOrigin: "50% 50%",
-        duration: 0.5
+        duration: 0.5,
       });
 
     const handleLeave = (el: Element) => () =>
       gsap.to(el, {
         scale: 1,
         filter: "none",
-        duration: 0.3
+        duration: 0.3,
       });
 
-    const listeners: { el: Element; enter: EventListener; leave: EventListener }[] = [];
+    const listeners: {
+      el: Element;
+      enter: EventListener;
+      leave: EventListener;
+    }[] = [];
 
     glowElements.forEach((el) => {
       const enter = handleEnter(el);
@@ -88,7 +92,7 @@ const GlowOnHover = ({
       height={height}
       viewBox={viewBox}
       xmlns="http://www.w3.org/2000/svg"
-      style={{ overflow: "visible"}}
+      style={{ overflow: "visible" }}
     >
       <g ref={wrapperRef} style={{ overflow: "visible" }}>
         {src}

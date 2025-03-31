@@ -33,9 +33,9 @@ type AnimatedOnHoverProps = {
     src: React.ReactElement;
     width?: number;
     height?: number;
-    animation?: String;
+    animation?: string;
 };
-declare const AnimatedOnHover: ({ src, width, height, animation }: AnimatedOnHoverProps) => react_jsx_runtime.JSX.Element;
+declare const AnimatedOnHover: ({ src, width, height, animation, }: AnimatedOnHoverProps) => react_jsx_runtime.JSX.Element;
 
 type GlowOnHoverProps = {
     src: React.ReactElement;
@@ -44,7 +44,7 @@ type GlowOnHoverProps = {
     scaleFactor?: number;
     color?: string;
 };
-declare const GlowOnHover: ({ src, width, height, scaleFactor, color }: GlowOnHoverProps) => react_jsx_runtime.JSX.Element;
+declare const GlowOnHover: ({ src, width, height, scaleFactor, color, }: GlowOnHoverProps) => react_jsx_runtime.JSX.Element;
 
 type MorphOnScrollProps = {
     startPath: string;
