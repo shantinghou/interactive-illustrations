@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, act } from "@testing-library/react";
-import SVGFollowMouse from "../components/SVGFollowMouse";
+import SVGFollowMouse from "../components/SvgFollowMouse"
 import { gsap } from "gsap";
 
 vi.mock("gsap", () => ({
