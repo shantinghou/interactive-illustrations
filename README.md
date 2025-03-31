@@ -1,3 +1,4 @@
+![Svggles Logo](./examples/public/logo.png)
 # svggles 🌀
 *Interactive illustrations made easy*
 

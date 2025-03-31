@@ -41,7 +41,7 @@ export default function Header({ onTabSelect }: HeaderProps) {
             </div>
             <div className="p-5 space-y-5">
                 <h3 className="text-lg md:text-2xl font-subtitle w-full lg:px-20">Svggles is a React utility package for creating interactive illustrations using SVGs.</h3>
-                <p className="text-sm md:text-md font-code underline underline-offset-4">SVggles is published as the `interactive-illustrations` npm package.</p>
+                <p className="text-sm md:text-md font-code underline underline-offset-4">Svggles is published as the `interactive-illustrations` npm package.</p>
             </div>
             <div className="p-5">
                 <p 
