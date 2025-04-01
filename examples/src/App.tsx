@@ -88,9 +88,9 @@ function App() {
           {/* Logo */}
           <img 
               className="cursor-pointer" 
-              width={'100px'} 
+              width={'50px'} 
               height={'50px'} 
-              src="/svggles.png" 
+              src="/logo.png" 
               alt="Svggle Logo" 
               onClick={() => handleTabSelect('Home')}
           />

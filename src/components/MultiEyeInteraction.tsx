@@ -17,7 +17,7 @@ const mapValue = (
   start1: number,
   stop1: number,
   start2: number,
-  stop2: number
+  stop2: number,
 ) => ((value - start1) * (stop2 - start2)) / (stop1 - start1) + start2;
 
 const distance = (x1: number, y1: number, x2: number, y2: number) =>
@@ -55,8 +55,10 @@ const MultiEyeInteraction: React.FC<MultiEyeInteractionProps> = ({
       const rect = svg.getBoundingClientRect();
       const vb = svg.viewBox.baseVal;
 
-      const mouseX = vb.x + ((event.clientX - rect.left) / rect.width) * vb.width;
-      const mouseY = vb.y + ((event.clientY - rect.top) / rect.height) * vb.height;
+      const mouseX =
+        vb.x + ((event.clientX - rect.left) / rect.width) * vb.width;
+      const mouseY =
+        vb.y + ((event.clientY - rect.top) / rect.height) * vb.height;
 
       svg.querySelectorAll(".eye").forEach((eye) => {
         const bounding = eye.querySelector(".bounding") as SVGGraphicsElement;
@@ -70,7 +72,8 @@ const MultiEyeInteraction: React.FC<MultiEyeInteractionProps> = ({
         const centerX = boundingBox.x + boundingBox.width / 2;
         const centerY = boundingBox.y + boundingBox.height / 2;
 
-        const maxBoundingRadius = Math.max(boundingBox.width, boundingBox.height) / 2;
+        const maxBoundingRadius =
+          Math.max(boundingBox.width, boundingBox.height) / 2;
         const maxMovingRadius = Math.max(movingBox.width, movingBox.height) / 2;
 
         const dx = mouseX - centerX;
@@ -85,8 +88,20 @@ const MultiEyeInteraction: React.FC<MultiEyeInteractionProps> = ({
         const cx = constrain(mouseX, minXTranslation, maxXTranslation);
         const cy = constrain(mouseY, minYTranslation, maxYTranslation);
 
-        const x = mapValue(cx, minXTranslation, maxXTranslation, centerX - 100, centerX + 100);
-        const y = mapValue(cy, minYTranslation, maxYTranslation, centerY - 100, centerY + 100);
+        const x = mapValue(
+          cx,
+          minXTranslation,
+          maxXTranslation,
+          centerX - 100,
+          centerX + 100,
+        );
+        const y = mapValue(
+          cy,
+          minYTranslation,
+          maxYTranslation,
+          centerY - 100,
+          centerY + 100,
+        );
 
         const maxOffset = maxBoundingRadius - maxMovingRadius;
         const d = constrain(distance(x, y, centerX, centerY), 0, maxOffset);

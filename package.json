@@ -1,20 +1,33 @@
 {
   "name": "interactive-illustrations",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A React library for interactive SVG animations",
   "main": "dist/index.js",
   "type": "module",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup -c",
+    "test": "vitest run",
+    "lint": "eslint src",
+    "lint:fix": "eslint src --fix",
+    "format": "prettier --check src",
+    "format:fix": "prettier --write src",
+    "clean": "rm -rf dist",
+    "rebuild": "npm run clean && npm run build"
   },
   "exports": {
     "import": "./dist/index.esm.js",
     "require": "./dist/index.js",
     "types": "./dist/index.d.ts"
   },
-  "keywords": ["svg", "illustration", "interactive", "animation", "svggles"],
+  "keywords": [
+    "svg",
+    "illustration",
+    "interactive",
+    "animation",
+    "svggles"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
@@ -24,15 +37,26 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@eslint/js": "^9.23.0",
     "@rollup/plugin-commonjs": "^28.0.2",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-typescript": "^12.1.2",
+    "@testing-library/react": "^16.2.0",
     "@types/react": "^19.0.10",
-    "eslint": "^9.20.1",
+    "eslint": "^9.23.0",
+    "eslint-plugin-react": "^7.37.4",
+    "globals": "^16.0.0",
+    "jsdom": "^26.0.0",
     "prettier": "^3.5.1",
     "rollup": "^4.34.8",
     "rollup-plugin-dts": "^6.1.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "typescript-eslint": "^8.28.0",
+    "vitest": "^3.1.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shantinghou/interactive-illustrations"
   }
 }

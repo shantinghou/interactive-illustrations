@@ -6,5 +6,5 @@ type GlowOnHoverProps = {
     scaleFactor?: number;
     color?: string;
 };
-declare const GlowOnHover: ({ src, width, height, scaleFactor, color }: GlowOnHoverProps) => import("react/jsx-runtime").JSX.Element;
+declare const GlowOnHover: ({ src, width, height, scaleFactor, color, }: GlowOnHoverProps) => import("react/jsx-runtime").JSX.Element;
 export default GlowOnHover;

@@ -1,3 +1,5 @@
+<img src="./examples/public/logo.png" alt="Svggles Logo" width="200" />
+
 # svggles 🌀
 *Interactive illustrations made easy*
 
@@ -11,6 +13,9 @@
 ✅ Easy customization for developers  
 
 📄 See website for how to use the components: [`svggles.vercel.app`](https://svggles.vercel.app)
+
+## Contribute
+Help build more creative interactions! [`See how you can contribute`](./CONTRIBUTING.md)
 
 ## Installation
 ```sh

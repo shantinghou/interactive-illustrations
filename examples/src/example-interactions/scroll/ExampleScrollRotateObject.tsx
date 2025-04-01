@@ -17,7 +17,7 @@ export default function ExampleScrollRotateObject() {
     <>
     <FLOWER/>
     <div className="bottom-10 right-10 fixed">
-      <RotateObject src={<FLOWER/>} size={0.8} respondsTo={"scroll"}/>
+      <RotateObject src={<FLOWER/>} size={0.8} respondsTo={"scroll"} clockwise={false}/>
     </div>
     </>
   );
