@@ -82,7 +82,7 @@ function App() {
   };
 
   return (
-    <div className="flex min-h-screen bg-white" >
+    <div className="flex min-h-screen !bg-white !text-black" >
       <header className="fixed top-0 left-0 right-0 h-15 shadow-xs z-60 flex items-center px-4 bg-gray-50">
         <div className="flex items-center justify-between w-full ">
           {/* Logo */}
