@@ -1,8 +1,8 @@
-import { CodeBlock } from "../components/CodeBlock.tsx"
+import { CodeBlock } from "../components/CodeBlock.tsx";
 import { ArrowRight } from "lucide-react";
 
 const code = `const Example = () => (
-    <svg width="208" height="187" viewBox="0 0 208 187" fill="none"
+    <svg width="208" height="187" viewBox="0 0 208 187" fill="none">
       <rect width="208" height="187" rx="25" fill="#7BB7DD"/>
       <g className="eye"> {/*labelled for interaction*/}
         <circle className="bounding" cx="57.5" cy="127.5" r="33.5" fill="white"/>
@@ -16,8 +16,8 @@ const code = `const Example = () => (
 );`
 
 interface SVGToReactGuideProps {
-    onTabSelect: (tabId: string) => void; // adjust type as needed
-  }
+    onTabSelect: (tabId: string) => void;
+}
 
 export default function SVGToReactGuide({ onTabSelect }: SVGToReactGuideProps) {
   return (
@@ -42,10 +42,13 @@ export default function SVGToReactGuide({ onTabSelect }: SVGToReactGuideProps) {
             <strong>Paste the code:</strong> Paste the SVG into the return statement of a functional component.
           </li>
           <li>
-            <strong>Add relevant classNames for interaction</strong> Use <code>className</code> and add relevant classNames to activate certain interactions (specified under each page)
+            <strong>Add relevant classNames for interaction:</strong> Use <code>className</code> and add relevant classNames to activate certain interactions (specified under each page).
           </li>
           <li>
             <strong>Export the component:</strong> Export it like any other React component so you can reuse it throughout your app.
+          </li>
+          <li>
+            <strong>Prefer automation:</strong> For a cleaner and more reliable conversion, use <a href="https://react-svgr.com/" target="_blank" rel="noopener noreferrer" className="underline text-blue-600 hover:text-blue-800">SVGR</a>, a tool that transforms raw SVGs into fully functional, React-friendly components. It automatically fixes things like attribute casing, inline styles, and more.
           </li>
         </ol>
 
@@ -53,8 +56,7 @@ export default function SVGToReactGuide({ onTabSelect }: SVGToReactGuideProps) {
           Your final component might look like this:
         </p>
 
-        <CodeBlock code={code}
-        />
+        <CodeBlock code={code} />
 
         <p>
           That's it! You can now use your SVG as a React component: <code>&lt;Example /&gt;</code>
