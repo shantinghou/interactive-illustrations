@@ -3,7 +3,7 @@ import { MorphOnScroll } from "interactive-illustrations";
 export default function ExampleMorphOnScroll() {
   return (
     <>
-    <div className="border-1 border-gray-200"  id="scroll-container relative" style={{ height: "200px", width: "200px", overflow: "auto" }}>
+    <div className="border-1 border-gray-200" id="scroll-container" style={{ height: "200px", width: "200px", overflow: "auto" }}>
           <div style={{ width: "300px", height: "1500px" }}>
             <div className="sticky top-0 left-0">
               <MorphOnScroll
